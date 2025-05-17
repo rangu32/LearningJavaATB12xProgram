@@ -20,15 +20,15 @@ public class Lab034_Char_Literal {
         char carriage_return = '\r';
 
         System.out.println("PramodDutta");
-        System.out.println("Pramod"+new_line+"Dutta");
+        System.out.println("Pramod" + new_line + "Dutta");
         System.out.println("Pramod\nDutta");
-        System.out.println("Pramod"+tab_line+"Dutta");
-        System.out.println("Pramod"+back_space+"Dutta");
-        System.out.println( " ----- ");
+        System.out.println("Pramod" + tab_line + "Dutta");
+        System.out.println("Pramod" + back_space + "Dutta");
+        System.out.println(" ----- ");
 
-        System.out.println("Pramod is "+carriage_return+"Dutta");
+        System.out.println("Pramod is " + carriage_return + "Dutta");
 
-        System.out.println("Hi, This is a First line"+new_line+"This is second line\n This is Third line");
+        System.out.println("Hi, This is a First line" + new_line + "This is second line\n This is Third line");
 
 
         char c10 = 'A';
@@ -36,11 +36,9 @@ public class Lab034_Char_Literal {
 
         char ruppes = '₹';
         System.out.println(ruppes);
-
         char my_laugh_smily = '\u1f60'; // :)
         System.out.println(my_laugh_smily);
+        char c11 = '\u1F60';
 
-        char c11  = '\u1F60';
-
-
+    }
 }
