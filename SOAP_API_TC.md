@@ -1,73 +1,29 @@
+# 📘 `IsValidISBN10` – SOAP API Test Case Suite
 
-# 📘 SOAP API Test Plan: `IsValidISBN10`
+This table contains 23 test cases covering valid/invalid ISBN inputs, headers, encoding, protocol compliance, and special characters.
 
-This document contains a comprehensive list of test cases for validating the `IsValidISBN10` SOAP API.
-
----
-
-## ✅ Test Case Format
-
-| Scenario TID | Test Data | TestCase Description | PreCondition | TestSteps | Expected Result | Actual Result | Steps to Execute | Expected Result | Actual Result | Status | Executed QA Name | Misc (Comments) | Priority | Is Automated |
-| ------------ | --------- | -------------------- | ------------ | --------- | --------------- | ------------- | ---------------- | --------------- | ------------- | ------ | ---------------- | --------------- | -------- | ------------ |
-
----
-
-## 🔹 Valid ISBN Test Cases
-
-| Scenario TID | Test Data  | TestCase Description                  | PreCondition            | TestSteps                     | Expected Result | Actual Result | Steps to Execute  | Expected Result | Actual Result | Status  | Executed QA Name | Misc (Comments) | Priority | Is Automated |
-| ------------ | ---------- | ------------------------------------- | ----------------------- | ----------------------------- | --------------- | ------------- | ----------------- | --------------- | ------------- | ------- | ---------------- | --------------- | -------- | ------------ |
-| TC001        | 0471958697 | Verify API with correct 10-digit ISBN | Service must be up      | Submit valid ISBN             | true            |               | POST SOAP request | true            |               | Pending |                  | Standard test   | High     | Yes          |
-| TC002        | 080442957X | Validate ISBN ending in capital X     | Service must be running | Send request with capital 'X' | true            |               | SOAP/JSON request | true            |               | Pending |                  | Valid 'X' case  | High     | Yes          |
-
----
-
-## ❌ Invalid ISBN Test Cases
-
-\| TC003 | 1234567890 | ISBN with invalid checksum | Service up | Send invalid ISBN | false |  | Execute POST | false |  | Pending |  | Invalid check digit | High | Yes |
-\| TC004 | 1234567 | ISBN too short | Service available | Send <10 digits | false |  | Check length handling | false |  | Pending |  | Length error | Medium | Yes |
-\| TC005 | 1234567890123 | ISBN too long | Service up | Send 13 digits | false |  | Validate response | false |  | Pending |  | Should be rejected | Medium | Yes |
-
----
-
-## 🔡 Format & Character Handling Test Cases
-
-\| TC006 | 12X34A6789 | ISBN with alphabet in middle | API available | Send alphanumeric | false |  | POST the malformed ISBN | false |  | Pending |  | Invalid chars | High | Yes |
-\| TC007 | abcdefghij | All alphabets | Service must be running | Submit full string of letters | false |  | Call API | false |  | Pending |  | Not numeric | Medium | Yes |
-\| TC008 | 047195869x | ISBN with lowercase x | Service must be up | Send ISBN with small 'x' | false |  | Execute call | false |  | Pending |  | Case sensitivity test | Medium | Yes |
-\| TC009 | !@#\$%^&\*() | Special characters | None | Send special chars | false |  | Check handling | false |  | Pending |  | Should return false | Medium | Yes |
-
----
-
-## 🌍 International/Unicode Input Test Cases
-
-\| TC010 | 漢字漢字漢字 | Chinese characters input | API up | Send Chinese chars | false |  | Test UTF-8 encoded body | false |  | Pending |  | Unicode rejection | Medium | Yes |
-\| TC011 | مرحبامرحبا | Arabic characters input | Web service running | Send Arabic input | false |  | Validate | false |  | Pending |  | Should not be valid | Medium | Yes |
-\| TC012 | Привет1234 | Cyrillic + digits | Service must be up | Send Cyrillic input | false |  | Try mixed format | false |  | Pending |  | Should fail | Medium | Yes |
-
----
-
-## 🔐 Header & Cookie Tests
-
-\| TC013 | 0471958697 | Missing `Content-Type` header | Service running | Omit content-type in request | HTTP error / failure |  | Submit SOAP request | HTTP 415 or Fault |  | Pending |  | Header validation | High | Yes |
-\| TC014 | 0471958697 | Missing SOAPAction header | For SOAP 1.1 | Skip `SOAPAction` | SOAP fault |  | Call without header | SOAP Fault |  | Pending |  | Needed in SOAP 1.1 | High | Yes |
-\| TC015 | 0471958697 | No headers at all | Service available | Strip all headers | HTTP error |  | Raw POST | HTTP 400 or 415 |  | Pending |  | Protocol test | Medium | Yes |
-\| TC016 | 0471958697 | Cookie header injection | None | Inject fake cookies | true |  | Inject cookies in request | true |  | Pending |  | Should ignore cookies | Low | Yes |
-
----
-
-## 🧾 Empty / Null / Whitespace Input Cases
-
-\| TC017 | "" | Empty string input | None | Send empty ISBN | false or error |  | Send empty value | false |  | Pending |  | Should reject | High | Yes |
-\| TC018 | null | Null value input | None | Send null in JSON or SOAP | false or error |  | Submit null input | false or error |  | Pending |  | Depends on parser | High | Yes |
-\| TC019 | " " | Whitespace input | Service up | Send space character | false |  | Execute POST | false |  | Pending |  | Treat as invalid | Medium | Yes |
-
----
-
-## 🧪 Protocol & Content-Type Validation
-
-\| TC020 | 0471958697 | Valid input with wrong content-type | Service running | Use `text/plain` instead of `text/xml` | HTTP error |  | Send with incorrect header | HTTP 415 |  | Pending |  | Header strictness | High | Yes |
-\| TC021 | 0471958697 | Valid input using SOAP 1.1 | SOAP 1.1 supported | Send valid SOAP 1.1 envelope | true |  | Format SOAP request | true |  | Pending |  | Protocol validation | High | Yes |
-\| TC022 | 0471958697 | Valid input using SOAP 1.2 | SOAP 1.2 supported | Use proper SOAP 1.2 format | true |  | Send properly formatted 1.2 | true |  | Pending |  | Protocol validation | High | Yes |
-\| TC023 | 0471958697 | Valid input using JSON | JSON supported | Send JSON POST | true |  | Proper content-type + body | true |  | Pending |  | Format-sensitive | High | Yes |
-
----
+| Scenario TID | Test Data    | TestCase Description                  | PreCondition            | TestSteps                     | Expected Result     | Actual Result | Steps to Execute         | Expected Result     | Actual Result | Status  | Executed QA Name | Misc               | Priority | Is Automated |
+|--------------|--------------|---------------------------------------|--------------------------|-------------------------------|----------------------|----------------|---------------------------|----------------------|----------------|---------|-------------------|---------------------|----------|--------------|
+| TC001        | 0471958697   | Verify API with correct 10-digit ISBN | Service must be up       | Submit valid ISBN             | true                 |                | POST SOAP request         | true                 |                | Pending |                   | Standard test        | High     | Yes          |
+| TC002        | 080442957X   | Validate ISBN ending in capital X     | Service must be running  | Send request with capital 'X' | true                 |                | SOAP/JSON request         | true                 |                | Pending |                   | Valid 'X' case       | High     | Yes          |
+| TC003        | 1234567890   | ISBN with invalid checksum            | Service up               | Send invalid ISBN             | false                |                | Execute POST              | false                |                | Pending |                   | Invalid check digit  | High     | Yes          |
+| TC004        | 1234567      | ISBN too short                        | Service available        | Send <10 digits               | false                |                | Check length handling     | false                |                | Pending |                   | Length error         | Medium   | Yes          |
+| TC005        | 1234567890123| ISBN too long                         | Service up               | Send 13 digits                | false                |                | Validate response         | false                |                | Pending |                   | Should be rejected   | Medium   | Yes          |
+| TC006        | 12X34A6789   | ISBN with alphabet in middle          | API available            | Send alphanumeric             | false                |                | POST the malformed ISBN   | false                |                | Pending |                   | Invalid chars         | High     | Yes          |
+| TC007        | abcdefghij   | All alphabets                         | Service must be running  | Submit full string of letters| false                |                | Call API                  | false                |                | Pending |                   | Not numeric           | Medium   | Yes          |
+| TC008        | 047195869x   | ISBN with lowercase x                 | Service must be up       | Send ISBN with small 'x'      | false                |                | Execute call              | false                |                | Pending |                   | Case sensitivity test| Medium   | Yes          |
+| TC009        | !@#$%^&*()   | Special characters                    | None                     | Send special chars            | false                |                | Check handling            | false                |                | Pending |                   | Should return false  | Medium   | Yes          |
+| TC010        | 漢字漢字漢字  | Chinese characters input              | API up                   | Send Chinese chars            | false                |                | Test UTF-8 encoded body   | false                |                | Pending |                   | Unicode rejection     | Medium   | Yes          |
+| TC011        | مرحبامرحبا   | Arabic characters input               | Web service running      | Send Arabic input             | false                |                | Validate                  | false                |                | Pending |                   | Should not be valid  | Medium   | Yes          |
+| TC012        | Привет1234   | Cyrillic + digits                     | Service must be up       | Send Cyrillic input           | false                |                | Try mixed format          | false                |                | Pending |                   | Should fail           | Medium   | Yes          |
+| TC013        | 0471958697   | Missing Content-Type header           | Service running          | Omit content-type in request  | HTTP error / failure |                | Submit SOAP request       | HTTP 415 or Fault    |                | Pending |                   | Header validation     | High     | Yes          |
+| TC014        | 0471958697   | Missing SOAPAction header             | For SOAP 1.1             | Skip SOAPAction               | SOAP fault           |                | Call without header       | SOAP Fault           |                | Pending |                   | Needed in SOAP 1.1    | High     | Yes          |
+| TC015        | 0471958697   | No headers at all                     | Service available        | Strip all headers             | HTTP error           |                | Raw POST                  | HTTP 400 or 415      |                | Pending |                   | Protocol test         | Medium   | Yes          |
+| TC016        | 0471958697   | Cookie header injection               | None                     | Inject fake cookies           | true                 |                | Inject cookies in request | true                 |                | Pending |                   | Should ignore cookies | Low      | Yes          |
+| TC017        | ""           | Empty string input                    | None                     | Send empty ISBN               | false or error       |                | Send empty value          | false                |                | Pending |                   | Should reject         | High     | Yes          |
+| TC018        | null         | Null value input                      | None                     | Send null in JSON or SOAP     | false or error       |                | Submit null input         | false or error       |                | Pending |                   | Depends on parser     | High     | Yes          |
+| TC019        | " "          | Whitespace input                      | Service up               | Send space character          | false                |                | Execute POST              | false                |                | Pending |                   | Treat as invalid      | Medium   | Yes          |
+| TC020        | 0471958697   | Valid input with wrong content-type   | Service running          | Use text/plain instead        | HTTP error           |                | Send with wrong header    | HTTP 415             |                | Pending |                   | Header strictness     | High     | Yes          |
+| TC021        | 0471958697   | Valid input using SOAP 1.1            | SOAP 1.1 supported       | Send valid SOAP 1.1 envelope  | true                 |                | Format SOAP request       | true                 |                | Pending |                   | Protocol validation   | High     | Yes          |
+| TC022        | 0471958697   | Valid input using SOAP 1.2            | SOAP 1.2 supported       | Use proper SOAP 1.2 format    | true                 |                | Send SOAP 1.2 request     | true                 |                | Pending |                   | Protocol validation   | High     | Yes          |
+| TC023        | 0471958697   | Valid input using JSON                | JSON supported           | Send JSON POST                | true                 |                | Proper content-type + body| true                 |                | Pending |                   | Format-sensitive      | High     | Yes          |
