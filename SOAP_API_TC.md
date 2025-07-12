@@ -1,5 +1,4 @@
 
-
 # 📘 SOAP API Test Plan: `IsValidISBN10`
 
 This document contains a comprehensive list of test cases for validating the `IsValidISBN10` SOAP API.
