@@ -1,5 +1,7 @@
 # 📘 `IsValidISBN10` – SOAP API Test Case Suite
 
+https://webservices.daehosting.com/services/isbnservice.wso?op=IsValidISBN10
+
 This table contains 23 test cases covering valid/invalid ISBN inputs, headers, encoding, protocol compliance, and special characters.
 
 | Scenario TID | Test Data    | TestCase Description                  | PreCondition            | TestSteps                     | Expected Result     | Actual Result | Steps to Execute         | Expected Result     | Actual Result | Status  | Executed QA Name | Misc               | Priority | Is Automated |
